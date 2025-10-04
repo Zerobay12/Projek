@@ -1,0 +1,2168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pustaka Komik - Koleksi Komik Terlengkap</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #3498db;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: #e74c3c;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #3498db;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #3498db;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+
+        .search-bar {
+            display: flex;
+            margin: 15px 0;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 16px;
+        }
+
+        .search-bar button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            display: flex;
+            margin: 20px 0;
+        }
+
+        .sidebar {
+            flex: 0 0 250px;
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-right: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .sidebar h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .categories {
+            list-style: none;
+        }
+
+        .categories li {
+            margin-bottom: 10px;
+        }
+
+        .categories a {
+            color: #333;
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            transition: color 0.3s;
+        }
+
+        .categories a:hover {
+            color: #3498db;
+        }
+
+        .categories span {
+            background-color: #f5f5f5;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        .comic-list {
+            flex: 1;
+        }
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-title h2 {
+            color: #2c3e50;
+        }
+
+        .view-all {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .comic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .comic-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .comic-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .comic-cover {
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .comic-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .comic-card:hover .comic-cover img {
+            transform: scale(1.05);
+        }
+
+        .comic-details {
+            padding: 15px;
+        }
+
+        .comic-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        .comic-chapter {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .comic-rating {
+            color: #f39c12;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        /* Comic Detail Page */
+        .comic-detail {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .comic-header {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .comic-poster {
+            flex: 0 0 250px;
+            margin-right: 20px;
+        }
+
+        .comic-poster img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .comic-info {
+            flex: 1;
+        }
+
+        .comic-info h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .comic-meta {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .comic-meta span {
+            background-color: #f5f5f5;
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .comic-synopsis {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-secondary {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #c0392b;
+        }
+
+        .btn-success {
+            background-color: #2ecc71;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #27ae60;
+        }
+
+        .btn-warning {
+            background-color: #f39c12;
+            color: white;
+        }
+
+        .btn-warning:hover {
+            background-color: #d35400;
+        }
+
+        .btn-info {
+            background-color: #17a2b8;
+            color: white;
+        }
+
+        .btn-info:hover {
+            background-color: #138496;
+        }
+
+        .chapter-list {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .chapter-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            text-decoration: none;
+            color: #333;
+            transition: background-color 0.3s;
+        }
+
+        .chapter-item:hover {
+            background-color: #f9f9f9;
+        }
+
+        .chapter-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Reader Page */
+        #comic-reader-page {
+            display: none;
+            background-color: #2c3e50;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .reader-header {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1001;
+        }
+
+        .reader-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .reader-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .reader-controls button {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .reader-content {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .comic-page {
+            max-width: 100%;
+            max-height: calc(100vh - 100px);
+            object-fit: contain;
+        }
+
+        .reader-navigation {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.8);
+            position: sticky;
+            bottom: 0;
+        }
+
+        /* Add Chapter Page */
+        #add-chapter-page {
+            display: none;
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .image-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .image-preview-item {
+            position: relative;
+            width: 100px;
+            height: 150px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .image-preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-preview-item .remove-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: rgba(231, 76, 60, 0.8);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .file-upload-area {
+            border: 2px dashed #3498db;
+            border-radius: 8px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .file-upload-area:hover {
+            background-color: #f8f9fa;
+        }
+
+        .file-upload-area i {
+            font-size: 48px;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+
+        .file-upload-area p {
+            color: #7f8c8d;
+            margin-bottom: 10px;
+        }
+
+        .file-upload-area input {
+            display: none;
+        }
+
+        /* Login/Register Page */
+        #login-page, #register-page {
+            display: none;
+            max-width: 400px;
+            margin: 40px auto;
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .auth-form h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .auth-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .auth-form .btn {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .auth-switch {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .auth-switch a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .role-select {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .role-option {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .role-option.selected {
+            border-color: #3498db;
+            background-color: #e8f4fd;
+        }
+
+        .role-option input {
+            display: none;
+        }
+
+        /* Admin Panel */
+        #admin-panel {
+            display: none;
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .stat-card .number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        /* Backup/Restore Section */
+        .backup-section {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .backup-section h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-section {
+            flex: 1;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: #3498db;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #ecf0f1;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: #3498db;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #34495e;
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            color: white;
+            z-index: 1002;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.3s;
+        }
+
+        .notification.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background-color: #2ecc71;
+        }
+
+        .notification.error {
+            background-color: #e74c3c;
+        }
+
+        .notification.info {
+            background-color: #3498db;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav ul {
+                margin-top: 15px;
+            }
+
+            .main-content {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+
+            .comic-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
+            .comic-header {
+                flex-direction: column;
+            }
+
+            .comic-poster {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+
+            .footer-section {
+                margin-bottom: 20px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo" id="home-link">Komik<span>Pedia</span></a>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="nav-link" data-page="home">Home</a></li>
+                        <li><a href="#" class="nav-link" data-page="comics">Komik</a></li>
+                        <li><a href="#" class="nav-link" data-page="genres">Genre</a></li>
+                        <li id="admin-nav" style="display: none;"><a href="#" class="nav-link" data-page="admin">Admin</a></li>
+                        <li id="add-chapter-nav" style="display: none;"><a href="#" class="nav-link" data-page="add-chapter">Tambah Chapter</a></li>
+                        <li id="auth-nav">
+                            <a href="#" class="nav-link" data-page="login">Login</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="user-info" id="user-info" style="display: none;">
+                    <div class="user-avatar" id="user-avatar"></div>
+                    <span id="username-display"></span>
+                    <button class="btn btn-secondary" id="logout-btn">Logout</button>
+                </div>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Cari komik..." id="search-input">
+                <button id="search-button"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div id="main-content">
+            <!-- Home Page Content -->
+            <div id="home-page">
+                <div class="main-content">
+                    <!-- Sidebar -->
+                    <div class="sidebar">
+                        <h2>Kategori</h2>
+                        <ul class="categories">
+                            <li><a href="#" class="genre-link" data-genre="action">Action <span>245</span></a></li>
+                            <li><a href="#" class="genre-link" data-genre="adventure">Adventure <span>187</span></a></li>
+                            <li><a href="#" class="genre-link" data-genre="comedy">Comedy <span>152</span></a></li>
+                            <li><a href="#" class="genre-link" data-genre="drama">Drama <span>98</span></a></li>
+                            <li><a href="#" class="genre-link" data-genre="fantasy">Fantasy <span>176</span></a></li>
+                            <li><a href="#" class="genre-link" data-genre="horror">Horror <span>84</span></a></li>
+                            <li><a href="#" class="genre-link" data-genre="romance">Romance <span>132</span></a></li>
+                            <li><a href="#" class="genre-link" data-genre="sci-fi">Sci-Fi <span>115</span></a></li>
+                            <li><a href="#" class="genre-link" data-genre="slice-of-life">Slice of Life <span>76</span></a></li>
+                            <li><a href="#" class="genre-link" data-genre="supernatural">Supernatural <span>93</span></a></li>
+                        </ul>
+
+                        <h2>Komik Terbaru</h2>
+                        <ul class="categories" id="latest-comics-sidebar">
+                            <!-- Latest comics will be loaded here -->
+                        </ul>
+                    </div>
+
+                    <!-- Comic List -->
+                    <div class="comic-list">
+                        <div class="section-title">
+                            <h2>Rekomendasi Komik</h2>
+                            <a href="#" class="view-all">Lihat Semua</a>
+                        </div>
+
+                        <div class="comic-grid" id="recommended-comics">
+                            <!-- Comic Cards will be loaded here by JavaScript -->
+                        </div>
+
+                        <div class="section-title" style="margin-top: 40px;">
+                            <h2>Komik Terbaru</h2>
+                            <a href="#" class="view-all">Lihat Semua</a>
+                        </div>
+
+                        <div class="comic-grid" id="new-comics">
+                            <!-- Additional comics for the new section -->
+                            <!-- Comic Cards will be loaded here by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comic Detail Page (initially hidden) -->
+            <div id="comic-detail-page" style="display: none;">
+                <div class="comic-detail">
+                    <div class="comic-header">
+                        <div class="comic-poster">
+                            <img id="detail-poster" src="" alt="Comic Poster">
+                        </div>
+                        <div class="comic-info">
+                            <h1 id="detail-title"></h1>
+                            <div class="comic-meta" id="detail-meta">
+                                <!-- Meta information will be loaded here -->
+                            </div>
+                            <div class="comic-synopsis" id="detail-synopsis">
+                                <!-- Synopsis will be loaded here -->
+                            </div>
+                            <div class="action-buttons">
+                                <button class="btn btn-primary" id="read-latest-btn">
+                                    <i class="fas fa-book-reader"></i> Baca Chapter Terbaru
+                                </button>
+                                <button class="btn btn-secondary" id="read-first-btn">
+                                    <i class="fas fa-book-open"></i> Baca dari Awal
+                                </button>
+                                <button class="btn btn-success" id="add-chapter-btn" style="display: none;">
+                                    <i class="fas fa-plus"></i> Tambah Chapter
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chapter-list">
+                    <h2>Daftar Chapter</h2>
+                    <div id="chapter-list">
+                        <!-- Chapter list will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add Chapter Page (initially hidden) -->
+            <div id="add-chapter-page" style="display: none;">
+                <h1>Tambah Chapter Baru</h1>
+                <form id="add-chapter-form">
+                    <div class="form-group">
+                        <label for="comic-select">Pilih Komik</label>
+                        <select id="comic-select" class="form-control" required>
+                            <option value="">-- Pilih Komik --</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="chapter-number">Nomor Chapter</label>
+                        <input type="number" id="chapter-number" class="form-control" min="1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="chapter-title">Judul Chapter</label>
+                        <input type="text" id="chapter-title" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="chapter-date">Tanggal Rilis</label>
+                        <input type="date" id="chapter-date" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Unggah Halaman Komik</label>
+                        <div class="file-upload-area" id="file-upload-area">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Klik atau seret gambar ke sini untuk mengunggah</p>
+                            <p class="small">Format yang didukung: JPG, PNG, GIF</p>
+                            <input type="file" id="image-upload" multiple accept="image/*">
+                        </div>
+                        <div class="image-preview" id="image-preview"></div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-save"></i> Simpan Chapter
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="cancel-add-chapter">
+                            <i class="fas fa-times"></i> Batal
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Login Page -->
+            <div id="login-page">
+                <div class="auth-form">
+                    <h1>Login</h1>
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="login-username">Username</label>
+                            <input type="text" id="login-username" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                    <div class="auth-switch">
+                        <p>Belum punya akun? <a href="#" id="show-register">Daftar di sini</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Register Page -->
+            <div id="register-page">
+                <div class="auth-form">
+                    <h1>Daftar</h1>
+                    <form id="register-form">
+                        <div class="form-group">
+                            <label for="register-username">Username</label>
+                            <input type="text" id="register-username" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-email">Email</label>
+                            <input type="email" id="register-email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password">Password</label>
+                            <input type="password" id="register-password" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Pilih Role</label>
+                            <div class="role-select">
+                                <label class="role-option">
+                                    <input type="radio" name="role" value="user" checked>
+                                    <div>Pembaca</div>
+                                </label>
+                                <label class="role-option">
+                                    <input type="radio" name="role" value="contributor">
+                                    <div>Kontributor</div>
+                                </label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Daftar</button>
+                    </form>
+                    <div class="auth-switch">
+                        <p>Sudah punya akun? <a href="#" id="show-login">Login di sini</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Panel -->
+            <div id="admin-panel">
+                <h1>Panel Admin</h1>
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <h3>Total Komik</h3>
+                        <div class="number" id="total-comics">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Chapter</h3>
+                        <div class="number" id="total-chapters">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Pengguna Terdaftar</h3>
+                        <div class="number" id="total-users">0</div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-success" id="manage-comics-btn">
+                        <i class="fas fa-book"></i> Kelola Komik
+                    </button>
+                    <button class="btn btn-warning" id="manage-users-btn">
+                        <i class="fas fa-users"></i> Kelola Pengguna
+                    </button>
+                </div>
+
+                <!-- Backup/Restore Section -->
+                <div class="backup-section">
+                    <h3>Backup & Restore Data</h3>
+                    <div class="action-buttons">
+                        <button class="btn btn-info" id="backup-data-btn">
+                            <i class="fas fa-download"></i> Backup Data
+                        </button>
+                        <button class="btn btn-warning" id="restore-data-btn">
+                            <i class="fas fa-upload"></i> Restore Data
+                        </button>
+                        <button class="btn btn-secondary" id="reset-data-btn">
+                            <i class="fas fa-trash"></i> Reset ke Data Awal
+                        </button>
+                    </div>
+                    <p style="margin-top: 10px; font-size: 14px; color: #666;">
+                        <i class="fas fa-info-circle"></i> Data disimpan secara permanen di browser Anda.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comic Reader Page -->
+    <div id="comic-reader-page">
+        <div class="reader-header">
+            <div class="reader-title" id="reader-title">Judul Komik - Chapter 1</div>
+            <div class="reader-controls">
+                <button id="prev-page-btn"><i class="fas fa-chevron-left"></i> Sebelumnya</button>
+                <button id="close-reader-btn">Tutup</button>
+                <button id="next-page-btn">Selanjutnya <i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+        <div class="reader-content">
+            <img src="" alt="Comic Page" class="comic-page" id="comic-page">
+        </div>
+        <div class="reader-navigation">
+            <button id="prev-chapter-btn"><i class="fas fa-backward"></i> Chapter Sebelumnya</button>
+            <button id="next-chapter-btn">Chapter Selanjutnya <i class="fas fa-forward"></i></button>
+        </div>
+    </div>
+
+    <!-- Loading Animation -->
+    <div class="loading" id="loading">
+        <div class="loading-spinner"></div>
+        <p>Memuat data komik...</p>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <!-- Hidden file input for restore -->
+    <input type="file" id="restore-file-input" accept=".json" style="display: none;">
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>KomikPedia</h3>
+                    <p>Situs baca komik online terlengkap dengan kualitas terjamin. Update setiap hari dengan chapter terbaru.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Link Cepat</h3>
+                    <ul>
+                        <li><a href="#" class="nav-link" data-page="home">Home</a></li>
+                        <li><a href="#" class="nav-link" data-page="comics">Daftar Komik</a></li>
+                        <li><a href="#" class="nav-link" data-page="genres">Genre</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Genre Populer</h3>
+                    <ul>
+                        <li><a href="#" class="genre-link" data-genre="action">Action</a></li>
+                        <li><a href="#" class="genre-link" data-genre="adventure">Adventure</a></li>
+                        <li><a href="#" class="genre-link" data-genre="comedy">Comedy</a></li>
+                        <li><a href="#" class="genre-link" data-genre="romance">Romance</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 KomikPedia - All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Database default komik
+        const defaultComicDatabase = {
+            'one-piece': {
+                title: 'One Piece',
+                poster: 'https://i.pinimg.com/736x/10/8e/3b/108e3b1df00743bb3ce908a48c8e7e47.jpg',
+                genre: ['Action', 'Adventure', 'Comedy', 'Fantasy'],
+                author: 'Eiichiro Oda',
+                status: 'Ongoing',
+                synopsis: 'One Piece menceritakan tentang petualangan Monkey D. Luffy, seorang anak laki-laki yang memiliki tubuh elastis seperti karet setelah memakan Buah Iblis secara tidak sengaja. Dengan kru bajak lautnya, yang dinamakan Bajak Laut Topi Jerami, Luffy menjelajah Grand Line untuk mencari harta karun terbesar di dunia yang dikenal sebagai "One Piece" dalam rangka untuk menjadi Raja Bajak Laut yang berikutnya.',
+                chapters: [
+                    { number: 1054, title: 'The Warrior of Liberation', date: '2023-05-15', pages: 3, images: [] },
+                    { number: 1053, title: 'The New Emperors', date: '2023-05-08', pages: 3, images: [] },
+                    { number: 1052, title: 'The Fateful Promise', date: '2023-05-01', pages: 3, images: [] }
+                ]
+            },
+            'attack-on-titan': {
+                title: 'Attack on Titan',
+                poster: 'https://i.pinimg.com/1200x/8f/3c/fc/8f3cfc63179b29235274e69b58c3a4b7.jpg',
+                genre: ['Action', 'Drama', 'Fantasy', 'Horror'],
+                author: 'Hajime Isayama',
+                status: 'Completed',
+                synopsis: 'Attack on Titan berlatar di dunia di mana umat manusia tinggal di dalam wilayah yang dikelilingi oleh tembok pertahanan besar yang melindungi mereka dari Titan, makhluk humanoid raksasa yang memangsa manusia tanpa alasan yang jelas. Cerita berpusat pada Eren Yeager, yang bersumpah untuk membalas semua Titan setelah mereka menyebabkan kehancuran di kota asalnya dan kematian ibunya.',
+                chapters: [
+                    { number: 139, title: 'Toward the Tree on That Hill', date: '2021-04-09', pages: 3, images: [] },
+                    { number: 138, title: 'A Long Dream', date: '2021-03-09', pages: 3, images: [] },
+                    { number: 137, title: 'Titans', date: '2021-02-09', pages: 3, images: [] }
+                ]
+            },
+            'solo-leveling': {
+                title: 'Solo Leveling',
+                poster: 'https://i.pinimg.com/736x/e6/c1/53/e6c153d4b150ba3397da214714a5e022.jpg',
+                genre: ['Action', 'Adventure', 'Fantasy'],
+                author: 'Chugong',
+                status: 'Completed',
+                synopsis: 'Solo Leveling bercerita tentang Sung Jin-Woo, seorang pemburu level E yang lemah yang dikenal sebagai "yang terlemah di dunia". Suatu hari, setelah bertahan dari penyergapan di dalam dungeon yang dua kali lebih kuat dari dungeon rank D, ia mendapatkan kemampuan langka untuk "level up". Sekarang, Jin-Woo berpetualang melalui berbagai dungeon untuk menjadi pemburu terkuat.',
+                chapters: [
+                    { number: 3, title: 'The Final Battle (5)', date: '2022-01-26', pages: 3, images: [] },
+                    { number: 2, title: 'The Final Battle (4)', date: '2022-01-19', pages: 3, images: [] },
+                    { number: 1, title: 'The Final Battle (3)', date: '2022-01-12', pages: 3, images: [] }
+                ]
+            },
+            'naruto': {
+                title: 'Naruto: Legacy',
+                poster: 'https://i.pinimg.com/1200x/00/f9/93/00f993fde8debed82a8d401b69fe01df.jpg',
+                genre: ['Action', 'Adventure', 'Fantasy'],
+                author: 'Masashi Kishimoto',
+                status: 'Completed',
+                synopsis: 'Naruto: Legacy melanjutkan cerita dari Naruto Shippuden, mengisahkan petualangan anak-anak dari karakter utama dalam menghadapi ancaman baru di dunia ninja.',
+                chapters: [
+                    { number: 2, title: 'Warrior\'s Resolve', date: '2023-04-20', pages: 3, images: [] },
+                    { number: 1, title: 'New Generation', date: '2023-04-13', pages: 3, images: [] }
+                ]
+            },
+            'demon-slayer': {
+                title: 'Demon Slayer: Infinity Castle',
+                poster: 'https://i.pinimg.com/736x/2e/49/3e/2e493e91a77392ba573df1778f7a55ba.jpg',
+                genre: ['Action', 'Fantasy', 'Supernatural'],
+                author: 'Koyoharu Gotouge',
+                status: 'Ongoing',
+                synopsis: 'Tanjiro dan kawan-kawan melanjutkan perjalanan mereka untuk mengalahkan Muzan Kibutsuji di dalam Infinity Castle yang misterius.',
+                chapters: [
+                    { number: 2, title: 'Final Confrontation', date: '2023-05-10', pages: 3, images: [] },
+                    { number: 1, title: 'Upper Moon Battle', date: '2023-05-03', pages: 3, images: [] }
+                ]
+            },
+            'the-fox-eye': {
+                title: 'The Fox-Eyes: The Demon',
+                poster: 'https://i.pinimg.com/736x/51/8c/2f/518c2f00c520a737133c1b8bc9f73962.jpg',
+                genre: ['Action', 'Supernatural', 'Mystery'],
+                author: 'Akira Yamamoto',
+                status: 'Ongoing',
+                synopsis: 'Seorang remaja dengan kemampuan mata rubah harus melawan iblis yang mengancam dunia manusia.',
+                chapters: [
+                    { number: 2, title: 'The Awakening', date: '2023-05-18', pages: 3, images: [] },
+                    { number: 1, title: 'Hidden Power', date: '2023-05-11', pages: 3, images: [] }
+                ]
+            },
+            'one-punch-man': {
+                title: 'Saitama Want Die',
+                poster: 'https://via.placeholder.com/300x400/3498db/ffffff?text=One+Punch+Man',
+                genre: ['Action', 'Comedy', 'Superhero'],
+                author: 'ONE',
+                status: 'Ongoing',
+                synopsis: 'Saitama yang bosan dengan kekuatannya yang terlalu kuat mencari cara untuk merasakan tantangan dalam pertarungan.',
+                chapters: [
+                    { number: 2, title: 'The Ultimate Challenge', date: '2023-05-22', pages: 3, images: [] },
+                    { number: 1, title: 'Boredom of Power', date: '2023-05-15', pages: 3, images: [] }
+                ]
+            }
+        };
+
+        // Database default pengguna
+        const defaultUserDatabase = {
+            'admin': {
+                username: 'admin',
+                email: 'admin@komikpedia.com',
+                password: 'admin0216',
+                role: 'admin',
+                avatar: 'A'
+            },
+            'contributor1': {
+                username: 'contributor1',
+                email: 'contributor1@komikpedia.com',
+                password: 'contrib123',
+                role: 'contributor',
+                avatar: 'C'
+            },
+            'user1': {
+                username: 'user1',
+                email: 'user1@example.com',
+                password: 'user123',
+                role: 'user',
+                avatar: 'U'
+            }
+        };
+
+        // Variabel state
+        let comicDatabase = {};
+        let userDatabase = {};
+        let currentComic = null;
+        let currentChapterIndex = 0;
+        let currentPage = 1;
+        let uploadedImages = [];
+        let currentUser = null;
+
+        // ===============================
+        // SISTEM PENYIMPANAN PERMANEN
+        // ===============================
+
+        // Fungsi untuk menyimpan data ke localStorage
+        function saveDataToStorage() {
+            try {
+                localStorage.setItem('komikpedia_comics', JSON.stringify(comicDatabase));
+                localStorage.setItem('komikpedia_users', JSON.stringify(userDatabase));
+                console.log('Data berhasil disimpan ke localStorage');
+                return true;
+            } catch (error) {
+                console.error('Error menyimpan data:', error);
+                showNotification('Error menyimpan data!', 'error');
+                return false;
+            }
+        }
+
+        // Fungsi untuk memuat data dari localStorage
+        function loadDataFromStorage() {
+            try {
+                const savedComics = localStorage.getItem('komikpedia_comics');
+                const savedUsers = localStorage.getItem('komikpedia_users');
+                
+                if (savedComics) {
+                    comicDatabase = JSON.parse(savedComics);
+                    console.log('Data komik berhasil dimuat dari localStorage');
+                } else {
+                    comicDatabase = JSON.parse(JSON.stringify(defaultComicDatabase));
+                    saveDataToStorage();
+                    console.log('Menggunakan data komik default');
+                }
+                
+                if (savedUsers) {
+                    userDatabase = JSON.parse(savedUsers);
+                    console.log('Data user berhasil dimuat dari localStorage');
+                } else {
+                    userDatabase = JSON.parse(JSON.stringify(defaultUserDatabase));
+                    saveDataToStorage();
+                    console.log('Menggunakan data user default');
+                }
+                
+                return true;
+            } catch (error) {
+                console.error('Error memuat data:', error);
+                comicDatabase = JSON.parse(JSON.stringify(defaultComicDatabase));
+                userDatabase = JSON.parse(JSON.stringify(defaultUserDatabase));
+                showNotification('Error memuat data, menggunakan data default', 'error');
+                return false;
+            }
+        }
+
+        // Fungsi untuk backup data ke file
+        function backupData() {
+            try {
+                const data = {
+                    comics: comicDatabase,
+                    users: userDatabase,
+                    timestamp: new Date().toISOString(),
+                    version: '1.0'
+                };
+                
+                const dataStr = JSON.stringify(data, null, 2);
+                const dataBlob = new Blob([dataStr], { type: 'application/json' });
+                const url = URL.createObjectURL(dataBlob);
+                
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `komikpedia_backup_${new Date().toISOString().split('T')[0]}.json`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+                
+                showNotification('Backup data berhasil!', 'success');
+                return true;
+            } catch (error) {
+                console.error('Error backup data:', error);
+                showNotification('Error backup data!', 'error');
+                return false;
+            }
+        }
+
+        // Fungsi untuk restore data dari file
+        function restoreData(file) {
+            try {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const data = JSON.parse(e.target.result);
+                        
+                        // Validasi data
+                        if (!data.comics || !data.users) {
+                            throw new Error('Format file backup tidak valid');
+                        }
+                        
+                        comicDatabase = data.comics;
+                        userDatabase = data.users;
+                        
+                        if (saveDataToStorage()) {
+                            displayComics();
+                            updateLatestComicsSidebar();
+                            showNotification('Data berhasil di-restore!', 'success');
+                        }
+                    } catch (error) {
+                        console.error('Error parsing backup file:', error);
+                        showNotification('Format file backup tidak valid!', 'error');
+                    }
+                };
+                reader.readAsText(file);
+            } catch (error) {
+                console.error('Error restore data:', error);
+                showNotification('Error restore data!', 'error');
+            }
+        }
+
+        // Fungsi untuk reset data ke default
+        function resetToDefaultData() {
+            if (confirm('Apakah Anda yakin ingin mereset semua data ke kondisi awal? Tindakan ini tidak dapat dibatalkan!')) {
+                comicDatabase = JSON.parse(JSON.stringify(defaultComicDatabase));
+                userDatabase = JSON.parse(JSON.stringify(defaultUserDatabase));
+                
+                if (saveDataToStorage()) {
+                    displayComics();
+                    updateLatestComicsSidebar();
+                    showNotification('Data berhasil direset ke kondisi awal!', 'success');
+                }
+            }
+        }
+
+        // ===============================
+        // FUNGSI UTAMA APLIKASI
+        // ===============================
+
+        // Fungsi untuk menampilkan notifikasi
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type} show`;
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Fungsi untuk menampilkan komik dari database
+        function displayComics() {
+            const recommendedGrid = document.getElementById('recommended-comics');
+            const newComicsGrid = document.getElementById('new-comics');
+            
+            // Kosongkan grid komik
+            recommendedGrid.innerHTML = '';
+            newComicsGrid.innerHTML = '';
+            
+            // Tambahkan komik ke grid rekomendasi
+            Object.keys(comicDatabase).forEach(comicId => {
+                const comic = comicDatabase[comicId];
+                const comicCard = createComicCard(comic, comicId);
+                recommendedGrid.appendChild(comicCard);
+            });
+            
+            // Tambahkan komik ke grid terbaru (bisa diacak atau pilih yang terbaru)
+            Object.keys(comicDatabase).forEach(comicId => {
+                const comic = comicDatabase[comicId];
+                const comicCard = createComicCard(comic, comicId);
+                newComicsGrid.appendChild(comicCard);
+            });
+        }
+
+        // Fungsi untuk update sidebar komik terbaru
+        function updateLatestComicsSidebar() {
+            const sidebar = document.getElementById('latest-comics-sidebar');
+            sidebar.innerHTML = '';
+            
+            // Ambil 5 komik terbaru berdasarkan chapter terbaru
+            const comics = Object.keys(comicDatabase).map(id => {
+                const comic = comicDatabase[id];
+                return {
+                    id: id,
+                    title: comic.title,
+                    latestChapter: comic.chapters[0] // Chapter terbaru ada di index 0
+                };
+            });
+            
+            // Urutkan berdasarkan tanggal chapter terbaru
+            comics.sort((a, b) => new Date(b.latestChapter.date) - new Date(a.latestChapter.date));
+            
+            // Ambil 5 teratas
+            const latestComics = comics.slice(0, 5);
+            
+            latestComics.forEach(comic => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+                    <a href="#" class="comic-link" data-comic="${comic.id}">
+                        ${comic.title} Chapter ${comic.latestChapter.number}
+                    </a>
+                `;
+                sidebar.appendChild(listItem);
+            });
+            
+            // Tambahkan event listener untuk link komik di sidebar
+            document.querySelectorAll('#latest-comics-sidebar .comic-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const comicId = link.getAttribute('data-comic');
+                    showComicDetail(comicId);
+                });
+            });
+        }
+
+        // Fungsi untuk membuat kartu komik
+        function createComicCard(comic, comicId) {
+            const comicCard = document.createElement('div');
+            comicCard.className = 'comic-card';
+            comicCard.setAttribute('data-comic', comicId);
+            
+            comicCard.innerHTML = `
+                <div class="comic-cover">
+                    <img src="${comic.poster}" alt="${comic.title}" onerror="this.src='https://via.placeholder.com/300x400/2c3e50/ffffff?text=Cover+Komik'">
+                </div>
+                <div class="comic-details">
+                    <div class="comic-title">${comic.title}</div>
+                    <div class="comic-chapter">Chapter ${comic.chapters[0].number}</div>
+                    <div class="comic-rating">
+                        <i class="fas fa-star"></i> ${(Math.random() * 0.5 + 4.5).toFixed(1)}
+                    </div>
+                </div>
+            `;
+            
+            // Tambahkan event listener untuk menampilkan detail komik
+            comicCard.addEventListener('click', () => {
+                showComicDetail(comicId);
+            });
+            
+            return comicCard;
+        }
+
+        // Fungsi untuk menampilkan detail komik
+        function showComicDetail(comicId) {
+            const comic = comicDatabase[comicId];
+            if (!comic) return;
+            
+            // Simpan komik yang sedang dilihat
+            currentComic = comicId;
+            
+            // Sembunyikan halaman lain, tampilkan halaman detail
+            hideAllPages();
+            document.getElementById('comic-detail-page').style.display = 'block';
+            
+            // Isi data komik
+            document.getElementById('detail-poster').src = comic.poster;
+            document.getElementById('detail-title').textContent = comic.title;
+            
+            // Isi meta information
+            const metaEl = document.getElementById('detail-meta');
+            metaEl.innerHTML = `
+                <span>Genre: ${comic.genre.join(', ')}</span>
+                <span>Author: ${comic.author}</span>
+                <span>Status: ${comic.status}</span>
+            `;
+            
+            // Isi sinopsis
+            document.getElementById('detail-synopsis').textContent = comic.synopsis;
+            
+            // Tampilkan tombol tambah chapter hanya untuk admin/contributor
+            const addChapterBtn = document.getElementById('add-chapter-btn');
+            if (currentUser && (currentUser.role === 'admin' || currentUser.role === 'contributor')) {
+                addChapterBtn.style.display = 'block';
+            } else {
+                addChapterBtn.style.display = 'none';
+            }
+            
+            // Isi daftar chapter
+            const chapterListEl = document.getElementById('chapter-list');
+            chapterListEl.innerHTML = '';
+            
+            comic.chapters.forEach((chapter, index) => {
+                const chapterItem = document.createElement('a');
+                chapterItem.className = 'chapter-item';
+                chapterItem.href = '#';
+                chapterItem.innerHTML = `
+                    <span>Chapter ${chapter.number}: ${chapter.title}</span>
+                    <span>${chapter.date}</span>
+                `;
+                
+                chapterItem.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openReader(comicId, index);
+                });
+                
+                chapterListEl.appendChild(chapterItem);
+            });
+        }
+
+        // Fungsi untuk membuka pembaca komik
+        function openReader(comicId, chapterIndex = 0) {
+            const comic = comicDatabase[comicId];
+            if (!comic) return;
+            
+            // Set state pembaca
+            currentComic = comicId;
+            currentChapterIndex = chapterIndex;
+            currentPage = 1;
+            
+            // Tampilkan pembaca komik
+            document.getElementById('comic-reader-page').style.display = 'block';
+            
+            // Update judul
+            const chapter = comic.chapters[currentChapterIndex];
+            document.getElementById('reader-title').textContent = 
+                `${comic.title} - Chapter ${chapter.number}: ${chapter.title}`;
+            
+            // Muat halaman pertama
+            loadPage();
+        }
+
+        // Fungsi untuk memuat halaman komik
+        function loadPage() {
+            const comic = comicDatabase[currentComic];
+            const chapter = comic.chapters[currentChapterIndex];
+            
+            // Jika ada gambar yang diunggah, gunakan gambar tersebut
+            if (chapter.images && chapter.images.length > 0 && currentPage <= chapter.images.length) {
+                document.getElementById('comic-page').src = chapter.images[currentPage - 1];
+            } else {
+                // Generate URL placeholder untuk halaman komik
+                const pageUrl = `https://via.placeholder.com/800x1200/2c3e50/ffffff?text=${comic.title}+Ch.${chapter.number}+Pg.${currentPage}`;
+                document.getElementById('comic-page').src = pageUrl;
+            }
+        }
+
+        // Fungsi untuk menutup pembaca komik
+        function closeReader() {
+            document.getElementById('comic-reader-page').style.display = 'none';
+        }
+
+        // Fungsi untuk kembali ke halaman home
+        function goToHome() {
+            hideAllPages();
+            document.getElementById('home-page').style.display = 'block';
+        }
+
+        // Fungsi untuk menyembunyikan semua halaman
+        function hideAllPages() {
+            document.getElementById('home-page').style.display = 'none';
+            document.getElementById('comic-detail-page').style.display = 'none';
+            document.getElementById('add-chapter-page').style.display = 'none';
+            document.getElementById('login-page').style.display = 'none';
+            document.getElementById('register-page').style.display = 'none';
+            document.getElementById('admin-panel').style.display = 'none';
+        }
+
+        // Fungsi untuk menampilkan halaman tambah chapter
+        function showAddChapterPage(comicId = null) {
+            // Cek apakah user memiliki akses
+            if (!currentUser || (currentUser.role !== 'admin' && currentUser.role !== 'contributor')) {
+                showNotification('Anda tidak memiliki akses untuk menambah chapter!', 'error');
+                return;
+            }
+            
+            hideAllPages();
+            document.getElementById('add-chapter-page').style.display = 'block';
+            
+            // Reset form
+            document.getElementById('add-chapter-form').reset();
+            uploadedImages = [];
+            document.getElementById('image-preview').innerHTML = '';
+            
+            // Isi dropdown komik
+            const comicSelect = document.getElementById('comic-select');
+            comicSelect.innerHTML = '<option value="">-- Pilih Komik --</option>';
+            
+            Object.keys(comicDatabase).forEach(id => {
+                const option = document.createElement('option');
+                option.value = id;
+                option.textContent = comicDatabase[id].title;
+                comicSelect.appendChild(option);
+            });
+            
+            // Jika ada comicId yang diberikan, pilih komik tersebut
+            if (comicId) {
+                comicSelect.value = comicId;
+            }
+        }
+
+        // Fungsi untuk menangani unggahan gambar
+        function handleImageUpload(files) {
+            const preview = document.getElementById('image-preview');
+            
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                
+                // Validasi tipe file
+                if (!file.type.match('image.*')) {
+                    showNotification('Hanya file gambar yang diizinkan!', 'error');
+                    continue;
+                }
+                
+                // Validasi ukuran file (maksimal 5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    showNotification('Ukuran file terlalu besar! Maksimal 5MB.', 'error');
+                    continue;
+                }
+                
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    // Simpan gambar ke array
+                    uploadedImages.push(e.target.result);
+                    
+                    // Buat elemen preview
+                    const previewItem = document.createElement('div');
+                    previewItem.className = 'image-preview-item';
+                    previewItem.innerHTML = `
+                        <img src="${e.target.result}" alt="Preview">
+                        <button type="button" class="remove-btn" data-index="${uploadedImages.length - 1}">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    `;
+                    
+                    preview.appendChild(previewItem);
+                    
+                    // Tambahkan event listener untuk tombol hapus
+                    previewItem.querySelector('.remove-btn').addEventListener('click', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        uploadedImages.splice(index, 1);
+                        previewItem.remove();
+                        
+                        // Perbarui index untuk semua tombol hapus
+                        const removeButtons = document.querySelectorAll('.remove-btn');
+                        removeButtons.forEach((btn, idx) => {
+                            btn.setAttribute('data-index', idx);
+                        });
+                    });
+                };
+                
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Fungsi untuk login
+        function login(username, password) {
+            const user = userDatabase[username];
+            
+            if (user && user.password === password) {
+                currentUser = user;
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                updateUIAfterLogin();
+                showNotification(`Selamat datang, ${username}!`, 'success');
+                goToHome();
+                return true;
+            } else {
+                showNotification('Username atau password salah!', 'error');
+                return false;
+            }
+        }
+
+        // Fungsi untuk registrasi
+        function register(username, email, password, role) {
+            if (userDatabase[username]) {
+                showNotification('Username sudah digunakan!', 'error');
+                return false;
+            }
+            
+            // Buat user baru
+            userDatabase[username] = {
+                username: username,
+                email: email,
+                password: password,
+                role: role,
+                avatar: username.charAt(0).toUpperCase()
+            };
+            
+            // Simpan ke storage
+            if (saveDataToStorage()) {
+                showNotification('Registrasi berhasil! Silakan login.', 'success');
+                return true;
+            } else {
+                showNotification('Error menyimpan data user!', 'error');
+                return false;
+            }
+        }
+
+        // Fungsi untuk logout
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            updateUIAfterLogout();
+            showNotification('Anda telah logout.', 'success');
+            goToHome();
+        }
+
+        // Fungsi untuk memperbarui UI setelah login
+        function updateUIAfterLogin() {
+            document.getElementById('auth-nav').style.display = 'none';
+            document.getElementById('user-info').style.display = 'flex';
+            document.getElementById('username-display').textContent = currentUser.username;
+            document.getElementById('user-avatar').textContent = currentUser.avatar;
+            
+            // Tampilkan menu admin/contributor jika sesuai
+            if (currentUser.role === 'admin') {
+                document.getElementById('admin-nav').style.display = 'block';
+                document.getElementById('add-chapter-nav').style.display = 'block';
+            } else if (currentUser.role === 'contributor') {
+                document.getElementById('add-chapter-nav').style.display = 'block';
+                document.getElementById('admin-nav').style.display = 'none';
+            } else {
+                document.getElementById('admin-nav').style.display = 'none';
+                document.getElementById('add-chapter-nav').style.display = 'none';
+            }
+        }
+
+        // Fungsi untuk memperbarui UI setelah logout
+        function updateUIAfterLogout() {
+            document.getElementById('auth-nav').style.display = 'block';
+            document.getElementById('user-info').style.display = 'none';
+            document.getElementById('admin-nav').style.display = 'none';
+            document.getElementById('add-chapter-nav').style.display = 'none';
+        }
+
+        // Fungsi untuk menampilkan halaman admin
+        function showAdminPanel() {
+            if (!currentUser || currentUser.role !== 'admin') {
+                showNotification('Anda tidak memiliki akses ke panel admin!', 'error');
+                return;
+            }
+            
+            hideAllPages();
+            document.getElementById('admin-panel').style.display = 'block';
+            
+            // Update statistik
+            document.getElementById('total-comics').textContent = Object.keys(comicDatabase).length;
+            
+            let totalChapters = 0;
+            Object.keys(comicDatabase).forEach(id => {
+                totalChapters += comicDatabase[id].chapters.length;
+            });
+            document.getElementById('total-chapters').textContent = totalChapters;
+            
+            document.getElementById('total-users').textContent = Object.keys(userDatabase).length;
+        }
+
+        // ===============================
+        // EVENT LISTENERS
+        // ===============================
+
+        // Event listener untuk navigasi
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const page = link.getAttribute('data-page');
+                
+                if (page === 'home') {
+                    goToHome();
+                } else if (page === 'add-chapter') {
+                    showAddChapterPage();
+                } else if (page === 'login') {
+                    hideAllPages();
+                    document.getElementById('login-page').style.display = 'block';
+                } else if (page === 'admin') {
+                    showAdminPanel();
+                } else {
+                    alert(`Halaman ${page} akan segera ditambahkan!`);
+                }
+            });
+        });
+
+        // Event listener untuk genre link
+        document.querySelectorAll('.genre-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const genre = link.getAttribute('data-genre');
+                alert(`Menampilkan komik dengan genre ${genre}`);
+            });
+        });
+
+        // Event listener untuk comic link di sidebar
+        document.querySelectorAll('.comic-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const comicId = link.getAttribute('data-comic');
+                showComicDetail(comicId);
+            });
+        });
+
+        // Event listener untuk tombol baca chapter terbaru
+        document.getElementById('read-latest-btn').addEventListener('click', () => {
+            if (currentComic) {
+                openReader(currentComic, 0); // Chapter terbaru adalah index 0
+            }
+        });
+
+        // Event listener untuk tombol baca dari awal
+        document.getElementById('read-first-btn').addEventListener('click', () => {
+            if (currentComic) {
+                const comic = comicDatabase[currentComic];
+                openReader(currentComic, comic.chapters.length - 1); // Chapter pertama adalah index terakhir
+            }
+        });
+
+        // Event listener untuk tombol tambah chapter
+        document.getElementById('add-chapter-btn').addEventListener('click', () => {
+            if (currentComic) {
+                showAddChapterPage(currentComic);
+            }
+        });
+
+        // Event listener untuk tombol navigasi pembaca
+        document.getElementById('close-reader-btn').addEventListener('click', closeReader);
+
+        document.getElementById('prev-page-btn').addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                loadPage();
+            } else if (currentChapterIndex < comicDatabase[currentComic].chapters.length - 1) {
+                // Pindah ke chapter sebelumnya
+                currentChapterIndex++;
+                const chapter = comicDatabase[currentComic].chapters[currentChapterIndex];
+                currentPage = chapter.pages;
+                loadPage();
+                
+                // Update judul
+                document.getElementById('reader-title').textContent = 
+                    `${comicDatabase[currentComic].title} - Chapter ${chapter.number}: ${chapter.title}`;
+            }
+        });
+
+        document.getElementById('next-page-btn').addEventListener('click', () => {
+            const comic = comicDatabase[currentComic];
+            const chapter = comic.chapters[currentChapterIndex];
+            
+            if (currentPage < chapter.pages) {
+                currentPage++;
+                loadPage();
+            } else if (currentChapterIndex > 0) {
+                // Pindah ke chapter berikutnya
+                currentChapterIndex--;
+                currentPage = 1;
+                loadPage();
+                
+                // Update judul
+                const newChapter = comic.chapters[currentChapterIndex];
+                document.getElementById('reader-title').textContent = 
+                    `${comic.title} - Chapter ${newChapter.number}: ${newChapter.title}`;
+            }
+        });
+
+        document.getElementById('prev-chapter-btn').addEventListener('click', () => {
+            if (currentChapterIndex < comicDatabase[currentComic].chapters.length - 1) {
+                currentChapterIndex++;
+                const chapter = comicDatabase[currentComic].chapters[currentChapterIndex];
+                currentPage = 1;
+                loadPage();
+                
+                // Update judul
+                document.getElementById('reader-title').textContent = 
+                    `${comicDatabase[currentComic].title} - Chapter ${chapter.number}: ${chapter.title}`;
+            }
+        });
+
+        document.getElementById('next-chapter-btn').addEventListener('click', () => {
+            if (currentChapterIndex > 0) {
+                currentChapterIndex--;
+                const chapter = comicDatabase[currentComic].chapters[currentChapterIndex];
+                currentPage = 1;
+                loadPage();
+                
+                // Update judul
+                document.getElementById('reader-title').textContent = 
+                    `${comicDatabase[currentComic].title} - Chapter ${chapter.number}: ${chapter.title}`;
+            }
+        });
+
+        // Event listener untuk pencarian
+        document.getElementById('search-button').addEventListener('click', () => {
+            const searchTerm = document.getElementById('search-input').value.trim();
+            if (searchTerm) {
+                // Simulasi pencarian
+                const foundComic = Object.keys(comicDatabase).find(id => 
+                    comicDatabase[id].title.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+                
+                if (foundComic) {
+                    showComicDetail(foundComic);
+                } else {
+                    showNotification(`Tidak ditemukan komik dengan kata kunci: ${searchTerm}`, 'error');
+                }
+            }
+        });
+
+        // Event listener untuk home link
+        document.getElementById('home-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            goToHome();
+        });
+
+        // Event listener untuk area unggah file
+        document.getElementById('file-upload-area').addEventListener('click', () => {
+            document.getElementById('image-upload').click();
+        });
+
+        document.getElementById('image-upload').addEventListener('change', (e) => {
+            handleImageUpload(e.target.files);
+        });
+
+        // Event listener untuk drag & drop
+        const fileUploadArea = document.getElementById('file-upload-area');
+        
+        fileUploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileUploadArea.style.backgroundColor = '#e8f4fd';
+        });
+        
+        fileUploadArea.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            fileUploadArea.style.backgroundColor = '';
+        });
+        
+        fileUploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileUploadArea.style.backgroundColor = '';
+            handleImageUpload(e.dataTransfer.files);
+        });
+
+        // Event listener untuk form tambah chapter
+        document.getElementById('add-chapter-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Cek apakah user memiliki akses
+            if (!currentUser || (currentUser.role !== 'admin' && currentUser.role !== 'contributor')) {
+                showNotification('Anda tidak memiliki akses untuk menambah chapter!', 'error');
+                return;
+            }
+            
+            const comicId = document.getElementById('comic-select').value;
+            const chapterNumber = parseInt(document.getElementById('chapter-number').value);
+            const chapterTitle = document.getElementById('chapter-title').value;
+            const chapterDate = document.getElementById('chapter-date').value;
+            
+            if (!comicId) {
+                showNotification('Pilih komik terlebih dahulu!', 'error');
+                return;
+            }
+            
+            if (uploadedImages.length === 0) {
+                showNotification('Unggah setidaknya satu gambar untuk chapter ini!', 'error');
+                return;
+            }
+            
+            // Tambahkan chapter baru ke database
+            const newChapter = {
+                number: chapterNumber,
+                title: chapterTitle,
+                date: chapterDate,
+                pages: uploadedImages.length,
+                images: [...uploadedImages] // Salin array gambar
+            };
+            
+            // Tambahkan chapter ke awal array (chapter terbaru)
+            comicDatabase[comicId].chapters.unshift(newChapter);
+            
+            // Simpan ke storage
+            if (saveDataToStorage()) {
+                showNotification(`Chapter ${chapterNumber} berhasil ditambahkan ke ${comicDatabase[comicId].title}!`, 'success');
+                
+                // Update sidebar komik terbaru
+                updateLatestComicsSidebar();
+                
+                // Kembali ke halaman detail komik
+                showComicDetail(comicId);
+            } else {
+                showNotification('Error menyimpan chapter!', 'error');
+            }
+        });
+
+        // Event listener untuk tombol batal
+        document.getElementById('cancel-add-chapter').addEventListener('click', () => {
+            if (currentComic) {
+                showComicDetail(currentComic);
+            } else {
+                goToHome();
+            }
+        });
+
+        // Event listener untuk form login
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+            
+            if (login(username, password)) {
+                // Login berhasil, form akan direset otomatis
+            }
+        });
+
+        // Event listener untuk form register
+        document.getElementById('register-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('register-username').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const role = document.querySelector('input[name="role"]:checked').value;
+            
+            if (register(username, email, password, role)) {
+                // Reset form dan kembali ke halaman login
+                document.getElementById('register-form').reset();
+                hideAllPages();
+                document.getElementById('login-page').style.display = 'block';
+            }
+        });
+
+        // Event listener untuk tombol logout
+        document.getElementById('logout-btn').addEventListener('click', logout);
+
+        // Event listener untuk switch antara login dan register
+        document.getElementById('show-register').addEventListener('click', (e) => {
+            e.preventDefault();
+            hideAllPages();
+            document.getElementById('register-page').style.display = 'block';
+        });
+
+        document.getElementById('show-login').addEventListener('click', (e) => {
+            e.preventDefault();
+            hideAllPages();
+            document.getElementById('login-page').style.display = 'block';
+        });
+
+        // Event listener untuk role selection
+        document.querySelectorAll('.role-option').forEach(option => {
+            option.addEventListener('click', () => {
+                document.querySelectorAll('.role-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                option.classList.add('selected');
+                option.querySelector('input').checked = true;
+            });
+        });
+
+        // Event listener untuk tombol admin
+        document.getElementById('manage-comics-btn').addEventListener('click', () => {
+            alert('Fitur kelola komik akan segera ditambahkan!');
+        });
+
+        document.getElementById('manage-users-btn').addEventListener('click', () => {
+            alert('Fitur kelola pengguna akan segera ditambahkan!');
+        });
+
+        // Event listener untuk backup/restore
+        document.getElementById('backup-data-btn').addEventListener('click', backupData);
+        
+        document.getElementById('restore-data-btn').addEventListener('click', () => {
+            document.getElementById('restore-file-input').click();
+        });
+        
+        document.getElementById('restore-file-input').addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                restoreData(e.target.files[0]);
+                e.target.value = ''; // Reset input file
+            }
+        });
+        
+        document.getElementById('reset-data-btn').addEventListener('click', resetToDefaultData);
+
+        // ===============================
+        // INISIALISASI APLIKASI
+        // ===============================
+
+        // Inisialisasi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            // Muat data dari localStorage
+            loadDataFromStorage();
+            
+            // Tampilkan komik
+            displayComics();
+            updateLatestComicsSidebar();
+            
+            // Set tanggal default ke hari ini
+            document.getElementById('chapter-date').valueAsDate = new Date();
+            
+            // Cek apakah user sudah login sebelumnya
+            const savedUser = localStorage.getItem('currentUser');
+            if (savedUser) {
+                try {
+                    currentUser = JSON.parse(savedUser);
+                    updateUIAfterLogin();
+                } catch (error) {
+                    console.error('Error loading user session:', error);
+                    localStorage.removeItem('currentUser');
+                }
+            }
+            
+            // Default pilih role user
+            document.querySelector('.role-option input[value="user"]').checked = true;
+            document.querySelector('.role-option input[value="user"]').parentElement.classList.add('selected');
+            
+            console.log('Aplikasi KomikPedia berhasil dimuat!');
+            console.log('Total komik:', Object.keys(comicDatabase).length);
+            console.log('Total pengguna:', Object.keys(userDatabase).length);
+        });
+    </script>
+</body>
+</html>
